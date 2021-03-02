@@ -7,16 +7,21 @@ load_dotenv()
 API_KEY = os.getenv('ALPACA_API_KEY')
 SECRET_KEY = os.getenv('ALPACA_API_SECRET')
 
-connection = sqlite3.connect('app.db')
+connection = sqlite3.connect('/Users/kevinminutti/Coding/stockgraph/app.db')
+connection.row_factory = sqlite3.Row
 
 cursor = connection.cursor()
+rows = cursor.fetchall()
+
+symbols = [row['symbol'] for row in rows] #current symbols in table
 
 api = tradeapi.REST(API_KEY, SECRET_KEY, base_url='https://paper-api.alpaca.markets')
 assets = api.list_assets()
 
 for asset in assets:
     try:
-        if asset.status == 'active' and asset.tradable:
+        if asset.status == 'active' and asset.tradable and asset.symbol not in symbols:
+            print(f"Added a new stock {asset.symbol} {asset.name}")
             cursor.execute("""
                 INSERT INTO stock (symbol, name, exchange)
                 VALUES (?, ?, ?)
@@ -26,7 +31,6 @@ for asset in assets:
         print(asset)
 
 connection.commit()
-
 
 
 
