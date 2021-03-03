@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <title>Stockgraph</title>
+  </head>
+  <body>
+    <div class="ui container">
+      <table class="ui selectable inverted table">
+        <h1>STOCKS</h1>
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th class="right aligned">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for stock in stocks%}
+          <tr>
+            <td>{{stock.symbol}}</td>
+            <td><a href="/stock/{{ stock.symbol }}">{{stock.name}}</a></td>
+          </tr>
+          {%endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+{% extends "layout.html" %} {% block content%}
+
+<h1><a href="/">Back To</a>STOCKS</h1>
+{{stock.symbol}} {{stock.name}} {% for price in prices%} {{price.high}} {%endfor
+%} {%endblock%}
