@@ -11,6 +11,10 @@ connection = sqlite3.connect('/Users/kevinminutti/Coding/stockgraph/app.db')
 connection.row_factory = sqlite3.Row
 
 cursor = connection.cursor()
+
+cursor.execute("""
+    SELECT symbol, name FROM stock
+""")
 rows = cursor.fetchall()
 
 symbols = [row['symbol'] for row in rows] #current symbols in table
@@ -31,6 +35,4 @@ for asset in assets:
         print(asset)
 
 connection.commit()
-
-
 
