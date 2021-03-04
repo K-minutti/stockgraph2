@@ -81,7 +81,6 @@ def strategy(request: Request, strategy_id):
         FROM strategy
         WHERE id = ?
     """, (strategy_id,))
-
     strategy = cursor.fetchone()
 
     cursor.execute(""" 
@@ -89,7 +88,6 @@ def strategy(request: Request, strategy_id):
         FROM stock JOIN stock_strategy on stock_strategy.stock_id = stock.id
         WHERE strategy_id = ?
     """, (strategy_id,))
-
     stocks = cursor.fetchall()
 
     return templates.TemplateResponse("strategy.html", {"request": request, "stocks": stocks, "strategy": strategy})
