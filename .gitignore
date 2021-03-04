@@ -2,5 +2,5 @@
 *.DS_Store
 *.vscode
 *.db
-
+*/__pycache__/*
 app.db
