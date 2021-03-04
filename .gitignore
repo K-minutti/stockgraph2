@@ -2,8 +2,5 @@
 *.DS_Store
 *.vscode
 *.db
-<<<<<<< HEAD
 */__pycache__/*
 app.db
-=======
->>>>>>> 9c00224... untracking db file
